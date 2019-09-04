@@ -21,14 +21,14 @@
             {{config('app.name')}}
         </a>
         <div class="navbar-collapse collapse">
-            {!!Menu::render('navbar-left.dashboard')!!}
-            {!!Menu::render('navbar-right.dashboard')!!}
+            {!!\Modules\Dashboard\Components\Menu\Facades\Menu::render('navbar-left.dashboard')!!}
+            {!!\Modules\Dashboard\Components\Menu\Facades\Menu::render('navbar-right.dashboard')!!}
         </div>
     </nav>
 
     <div class="d-flex">
         <div class="sidebar sidebar-dark bg-wp">
-            {!!Menu::render('sidebar.dashboard')!!}
+            {!!\Modules\Dashboard\Components\Menu\Facades\Menu::render('sidebar.dashboard')!!}
         </div>
 
         <div class="content p-4">

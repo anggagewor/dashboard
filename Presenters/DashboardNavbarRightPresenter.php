@@ -2,8 +2,8 @@
 
 namespace Modules\Dashboard\Presenters;
 
-use Nwidart\Menus\Presenters\Presenter;
-use Nwidart\Menus\MenuItem;
+use Modules\Dashboard\Components\Menu\Presenters\Presenter;
+use Modules\Dashboard\Components\Menu\MenuItem;
 
 class DashboardNavbarRightPresenter extends Presenter
 {
@@ -88,7 +88,7 @@ class DashboardNavbarRightPresenter extends Presenter
     /**
      * Get multilevel menu wrapper.
      *
-     * @param \Nwidart\Menus\MenuItem $item
+     * @param \Modules\Dashboard\Components\Menu\MenuItem $item
      *
      * @return string`
      */

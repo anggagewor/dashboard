@@ -1,18 +1,17 @@
 <?php
 
-namespace Modules\Dashboard\Presenters;
+namespace Modules\Dashboard\Components\Menu\Presenters\Bootstrap;
 
 use Modules\Dashboard\Components\Menu\Presenters\Presenter;
-use Modules\Dashboard\Components\Menu\MenuItem;
 
-class DashboardNavbarPresenter extends Presenter
+class NavbarPresenter extends Presenter
 {
     /**
      * {@inheritdoc }.
      */
     public function getOpenTagWrapper()
     {
-        return PHP_EOL . '<ul class="navbar-nav">' . PHP_EOL;
+        return PHP_EOL . '<ul class="nav navbar-nav">' . PHP_EOL;
     }
 
     /**
@@ -28,13 +27,13 @@ class DashboardNavbarPresenter extends Presenter
      */
     public function getMenuWithoutDropdownWrapper($item)
     {
-        return '<li class="nav-item ' . $this->getActiveState($item) . '"><a href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>' . $item->getIcon() . ' ' . $item->title . '</a></li>' . PHP_EOL;
+        return '<li' . $this->getActiveState($item) . '><a href="' . $item->getUrl() . '" ' . $item->getAttributes() . '>' . $item->getIcon() . ' ' . $item->title . '</a></li>' . PHP_EOL;
     }
 
     /**
      * {@inheritdoc }.
      */
-    public function getActiveState($item, $state = ' active')
+    public function getActiveState($item, $state = ' class="active"')
     {
         return $item->isActive() ? $state : null;
     }
@@ -73,8 +72,8 @@ class DashboardNavbarPresenter extends Presenter
      */
     public function getMenuWithDropDownWrapper($item)
     {
-        return '<li class="nav-item dropdown' . $this->getActiveStateOnChild($item, ' active') . '">
-		          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+        return '<li class="dropdown' . $this->getActiveStateOnChild($item, ' active') . '">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					' . $item->getIcon() . ' ' . $item->title . '
 			      	<b class="caret"></b>
 			      </a>
@@ -95,7 +94,7 @@ class DashboardNavbarPresenter extends Presenter
     public function getMultiLevelDropdownWrapper($item)
     {
         return '<li class="dropdown' . $this->getActiveStateOnChild($item, ' active') . '">
-		          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					' . $item->getIcon() . ' ' . $item->title . '
 			      	<b class="caret pull-right caret-right"></b>
 			      </a>
@@ -104,27 +103,5 @@ class DashboardNavbarPresenter extends Presenter
 			      </ul>
 		      	</li>'
         . PHP_EOL;
-    }
-    
-    public function getChildMenuItems(MenuItem $item)
-    {
-        $results = '';
-        foreach ($item->getChilds() as $child) {
-            if ($child->hidden()) {
-                continue;
-            }
-
-            if ($child->hasSubMenu()) {
-                $results .= $this->getMultiLevelDropdownWrapper($child);
-            } elseif ($child->isHeader()) {
-                $results .= $this->getHeaderWrapper($child);
-            } elseif ($child->isDivider()) {
-                $results .= $this->getDividerWrapper();
-            } else {
-                $results .= $this->getMenuWithoutDropdownWrapper($child);
-            }
-        }
-
-        return $results;
     }
 }

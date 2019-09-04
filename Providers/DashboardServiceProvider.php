@@ -4,7 +4,7 @@ namespace Modules\Dashboard\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-
+use Modules\Dashboard\Components\Menu\MenusServiceProvider;
 class DashboardServiceProvider extends ServiceProvider
 {
     /**
@@ -32,6 +32,7 @@ class DashboardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->app->register(MenusServiceProvider::class);
     }
 
     /**

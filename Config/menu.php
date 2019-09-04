@@ -1,4 +1,5 @@
 <?php
+use Modules\Dashboard\Components\Menu\Facades\Menu;
 Menu::create('sidebar.dashboard', function($menu) {
 	$menu->setPresenter(\Modules\Dashboard\Presenters\DashboardMenuPresenter::class);
 	$menu->route(
